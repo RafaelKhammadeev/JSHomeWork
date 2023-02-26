@@ -1,12 +1,9 @@
-function display_refresh_data(){
-    let refresh = 1000;// Refresh rate in milliseconds
-    mytime = setTimeout('display_current_data()', refresh)
+const refreshTimeout = 1000;
+let currentData = null;
+
+function displayCurrentData() {
+    currentData = new Date(Date.now())
+    document.getElementById('current-data').innerHTML = currentData;
 }
 
-function display_current_data(){
-    let current_data = new Date(Date.now())
-    document.getElementById('current-data').innerHTML = current_data;
-    display_refresh_data()
-}
-
-display_current_data()
+setInterval(() => displayCurrentData(), currentData === null ? 0 : refreshTimeout);
